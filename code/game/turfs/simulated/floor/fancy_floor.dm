@@ -129,6 +129,14 @@
 	underlay_appearance.plane = PLANE_SPACE
 	return TRUE
 
+/turf/simulated/floor/fakespace/redspace
+	var/signal_state = ""
+
+
+/turf/simulated/floor/fakespace/redspace/Initialize(mapload)
+	. = ..()
+	signal_state = "redfloor"
+
 /turf/simulated/floor/carpet/arcade
 	icon = 'icons/goonstation/turf/floor.dmi'
 	icon_state = "arcade"

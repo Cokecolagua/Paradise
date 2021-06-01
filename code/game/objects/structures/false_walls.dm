@@ -369,3 +369,33 @@
 	var/turf/T = get_turf(src)
 	new /obj/effect/temp_visual/ratvar/wall/false(T)
 	new /obj/effect/temp_visual/ratvar/beam/falsewall(T)
+
+/obj/structure/falsewall/redspace
+	desc = "A light-weight titanium wall used in shuttles."
+	icon = 'icons/turf/walls/shuttle_wall.dmi'
+	icon_state = "shuttle"
+	mineral = /obj/item/stack/sheet/mineral/titanium
+	walltype = /turf/simulated/wall/mineral/titanium
+	smooth = SMOOTH_MORE
+	canSmoothWith = list(/turf/simulated/wall/mineral/titanium, /obj/machinery/door/airlock/titanium, /obj/machinery/door/airlock, /obj/structure/window/full/shuttle, /obj/structure/shuttle/engine/heater)
+	var/signal_state = ""
+
+/obj/structure/falsewall/redspace/attackby(obj/item/W, mob/user, params)
+	if(opening)
+		to_chat(user, "<span class='warning'>You must wait until the door has stopped moving.</span>")
+		return
+	if(istype(W, /obj/item/mining_scanner/red_key))
+		if(density)
+			user.visible_message("<span class='notice'>[user] inserts a key on [src] and it opens.</span>", "<span class='warning'>You insert the key on [src].</span>")
+			toggle(user)
+		else if(!density)
+			user.visible_message("<span class='notice'>[user] inserts a key on [src] and it closes.</span>", "<span class='warning'>You insert the key on [src].</span>")
+			toggle(user)
+	else
+		to_chat(user, "<span class='warning'>You can't reach, close it first!</span>")
+
+/obj/structure/falsewall/redspace/welder_act(mob/user, obj/item/I)
+	return
+
+/obj/structure/falsewall/redspace/attack_hand(mob/user)
+	return

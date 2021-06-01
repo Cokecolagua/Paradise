@@ -163,3 +163,20 @@
 	icon_state = "map-shuttle"
 	smooth = SMOOTH_MORE | SMOOTH_DIAGONAL
 	canSmoothWith = list(/turf/simulated/wall/mineral/plastitanium, /turf/simulated/wall/indestructible/syndicate, /obj/machinery/door/airlock/titanium, /obj/machinery/door/airlock, /obj/structure/shuttle/engine, /obj/structure/falsewall/plastitanium, /turf/simulated/wall/indestructible/opsglass, /obj/structure/window/full/plastitanium)
+
+/turf/simulated/wall/indestructible/redspace
+	icon = 'icons/turf/space.dmi'
+	icon_state = "0"
+	plane = PLANE_SPACE
+	var/signal_state = ""
+
+/turf/simulated/wall/indestructible/redspace/Initialize(mapload)
+	. = ..()
+	icon_state = SPACE_ICON_STATE
+	signal_state = "redwall"
+
+/turf/simulated/wall/indestructible/redspace/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
+	underlay_appearance.icon = 'icons/turf/space.dmi'
+	underlay_appearance.icon_state = SPACE_ICON_STATE
+	underlay_appearance.plane = PLANE_SPACE
+	return TRUE
