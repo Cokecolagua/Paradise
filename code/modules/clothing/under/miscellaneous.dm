@@ -46,6 +46,9 @@
 	item_state = "waiter"
 	item_color = "waiter"
 
+/obj/item/clothing/under/waiter/shop
+	name = "shopclerk's outfit"
+
 /obj/item/clothing/under/rank/mailman
 	name = "mailman's jumpsuit"
 	desc = "<i>'Special delivery!'</i>"
