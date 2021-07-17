@@ -578,6 +578,8 @@
 #include "code\game\gamemodes\shadowling\shadowling_abilities.dm"
 #include "code\game\gamemodes\shadowling\shadowling_items.dm"
 #include "code\game\gamemodes\shadowling\special_shadowling_abilities.dm"
+#include "code\game\gamemodes\sorcerer\sorcerer.dm"
+#include "code\game\gamemodes\sorcerer\sorcerer_powers.dm"
 #include "code\game\gamemodes\traitor\traitor.dm"
 #include "code\game\gamemodes\vampire\traitor_vamp.dm"
 #include "code\game\gamemodes\vampire\vampire.dm"

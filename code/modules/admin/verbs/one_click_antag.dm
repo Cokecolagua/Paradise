@@ -545,6 +545,37 @@
 		return 1
 	return 0
 
+/datum/admins/proc/makeSorcerers()
+
+	var/datum/game_mode/sorcerer/temp = new
+	if(config.protect_roles_from_antagonist)
+		temp.restricted_jobs += temp.protected_jobs
+
+	var/list/mob/living/carbon/human/candidates = list()
+	var/mob/living/carbon/human/H = null
+
+	var/antnum = input(owner, "How many sorcerers you want to create? Enter 0 to cancel","Amount:", 0) as num
+	if(!antnum || antnum <= 0)
+		return
+
+	log_admin("[key_name(owner)] tried making Sorcerers with One-Click-Antag")
+	message_admins("[key_name_admin(owner)] tried making Sorcerers with One-Click-Antag")
+
+	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
+		if(CandCheck(ROLE_SORCERER, applicant, temp))
+			candidates += applicant
+
+	if(candidates.len)
+		var/numSorcerers = min(candidates.len, antnum)
+
+		for(var/i = 0, i<numSorcerers, i++)
+			H = pick(candidates)
+			H.mind.make_Sorcerer()
+			candidates.Remove(H)
+
+		return 1
+	return 0
+
 /datum/admins/proc/makeThunderdomeTeams() // Not strictly an antag, but this seemed to be the best place to put it.
 
 	var/list/mob/candidates = list()

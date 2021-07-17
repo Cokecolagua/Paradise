@@ -51,6 +51,7 @@
 	var/datum/changeling/changeling		//changeling holder
 	var/linglink
 	var/datum/vampire/vampire			//vampire holder
+	var/datum/sorcerer/sorcerer         //sorcerer holder
 
 	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
 	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
@@ -307,6 +308,17 @@
 		. += "<a href='?src=[UID()];abductor=abductor'>abductor</a>|<b>NO</b>"
 
 	. += _memory_edit_role_enabled(ROLE_ABDUCTOR)
+
+/datum/mind/proc/memory_edit_sorcerer(mob/living/carbon/human/H)
+	. = _memory_edit_header("sorcerer")
+	if(src in SSticker.mode.sorcerers)
+		. += "<b><font color='red'>SORCERER</font></b>|<a href='?src=[UID()];sorcerer=clear'>no</a>"
+		if(objectives.len==0)
+			. += "<br>Objectives are empty! <a href='?src=[UID()];sorcerer=autoobjectives'>Randomize!</a>"
+	else
+		. += "<a href='?src=[UID()];sorcerer=sorcerer'>sorcerer</a>|<b>NO</b>"
+
+	. += _memory_edit_role_enabled(ROLE_SORCERER)
 
 /datum/mind/proc/memory_edit_eventmisc(mob/living/H)
 	. = _memory_edit_header("event", list())
@@ -1548,6 +1560,15 @@
 		SSticker.mode.forge_vampire_objectives(src)
 		SSticker.mode.greet_vampire(src)
 		SSticker.mode.update_vampire_icons_added(src)
+
+/datum/mind/proc/make_Sorcerer()
+	if(!(src in SSticker.mode.sorcerers))
+		SSticker.mode.sorcerers += src
+		SSticker.mode.grant_sorcerer_powers(current)
+		special_role = SPECIAL_ROLE_SORCERER
+		SSticker.mode.forge_sorcerer_objectives(src)
+		SSticker.mode.greet_sorcerer(src)
+		SSticker.mode.update_sorcerer_icons_added(src)
 
 /datum/mind/proc/make_Changeling()
 	if(!(src in SSticker.mode.changelings))
