@@ -117,6 +117,10 @@
 				sorcerer.objectives += survive_objective
 	return
 
+/datum/sorcerer/proc/update_sorcerer_cloning(mob/living/carbon/human/current)
+	if(current.mind && current.mind.sorcerer && current.mind.sorcerer.owner && (current.mind.sorcerer.owner != current))
+		current.mind.sorcerer.owner = current
+
 /datum/game_mode/proc/grant_sorcerer_powers(mob/living/carbon/sorcerer_mob)
 	if(!istype(sorcerer_mob))
 		return

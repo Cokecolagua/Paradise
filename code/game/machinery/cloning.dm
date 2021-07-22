@@ -445,6 +445,8 @@ GLOBAL_LIST_INIT(cloner_biomass_items, list(\
 				SSticker.mode.ascend(H)
 	if(H.mind.vampire)
 		H.mind.vampire.update_owner(H)
+	if(H.mind.sorcerer)
+		H.mind.sorcerer.update_sorcerer_cloning(H)
 	if((H.mind in SSticker.mode.vampire_thralls) || (H.mind in SSticker.mode.vampire_enthralled))
 		SSticker.mode.update_vampire_icons_added(H.mind)
 	if(H.mind in SSticker.mode.changelings)

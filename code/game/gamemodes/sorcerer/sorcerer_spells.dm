@@ -158,7 +158,6 @@
 	background_icon_state = "bg_revenant"
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_CONSCIOUS
 	button_icon_state = "arcane_aura"
-	var/list/items_analyzed = list()
 	var/arcane_torch = /obj/item/melee/sorcerer_hand
 	var/obj/item/melee/sorcerer_hand/torch
 
@@ -210,4 +209,8 @@
 
 /datum/sorcerer
 	var/current_knowledge = 0
+	var/list/all_spells = list()
+	var/list/draw_pile = list()
+	var/list/discard_pile = list()
+	var/list/items_analyzed = list()
 	var/mob/living/owner = null
