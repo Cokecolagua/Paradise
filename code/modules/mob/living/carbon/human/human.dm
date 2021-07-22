@@ -211,6 +211,9 @@
 				stat("Total Blood", "[mind.vampire.bloodtotal]")
 				stat("Usable Blood", "[mind.vampire.bloodusable]")
 
+			if(mind.sorcerer)
+				stat("Current Knowledge", "[mind.sorcerer.current_knowledge]")
+
 	if(istype(loc, /obj/spacepod)) // Spacdpods!
 		var/obj/spacepod/S = loc
 		stat("Spacepod Charge", "[istype(S.battery) ? "[(S.battery.charge / S.battery.maxcharge) * 100]" : "No cell detected"]")

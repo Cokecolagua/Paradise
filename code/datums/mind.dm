@@ -311,7 +311,7 @@
 
 /datum/mind/proc/memory_edit_sorcerer(mob/living/carbon/human/H)
 	. = _memory_edit_header("sorcerer")
-	if(src in SSticker.mode.sorcerers)
+	if(src in SSticker.mode.all_sorcerers)
 		. += "<b><font color='red'>SORCERER</font></b>|<a href='?src=[UID()];sorcerer=clear'>no</a>"
 		if(objectives.len==0)
 			. += "<br>Objectives are empty! <a href='?src=[UID()];sorcerer=autoobjectives'>Randomize!</a>"
@@ -432,6 +432,7 @@
 		"vampire", // "traitorvamp",
 		"nuclear",
 		"traitor", // "traitorchan",
+		"sorcerer",
 	)
 	var/mob/living/carbon/human/H = current
 	if(ishuman(current))
@@ -445,6 +446,8 @@
 		sections["changeling"] = memory_edit_changeling(H)
 		/** VAMPIRE ***/
 		sections["vampire"] = memory_edit_vampire(H)
+		/** SORCERER ***/
+		sections["sorcerer"] = memory_edit_sorcerer(H)
 		/** NUCLEAR ***/
 		sections["nuclear"] = memory_edit_nuclear(H)
 		/** SHADOWLING **/
@@ -1562,9 +1565,9 @@
 		SSticker.mode.update_vampire_icons_added(src)
 
 /datum/mind/proc/make_Sorcerer()
-	if(!(src in SSticker.mode.sorcerers))
-		SSticker.mode.sorcerers += src
-		SSticker.mode.grant_sorcerer_powers(current)
+	if(!(src in SSticker.mode.all_sorcerers))
+		SSticker.mode.all_sorcerers += src
+		SSticker.mode.add_sorcerer_actions(current)
 		special_role = SPECIAL_ROLE_SORCERER
 		SSticker.mode.forge_sorcerer_objectives(src)
 		SSticker.mode.greet_sorcerer(src)
