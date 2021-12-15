@@ -124,7 +124,8 @@
 	var/gained_food = max(5, 10 * L.mob_size) // Tiny things are worth less
 	if(ishuman(L) && !ismonkeybasic(L))
 		gained_food += 10 // Humans are extra tasty
-
+	if(istype(L, /mob/living/simple_animal/slime)
+		gained_food -= 15 // Tired of the taste
 	return gained_food
 
 /mob/living/simple_animal/hostile/morph/proc/use_food(amount)
