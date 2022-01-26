@@ -1,4 +1,4 @@
-+/mob/living/simple_animal/hostile/randomstats
+/mob/living/simple_animal/hostile/randomstats
 	name = "alien fighter"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "alienh_running"
